@@ -1,4 +1,4 @@
-var swiper = new Swiper(".mySwiper", {
+let swiper = new Swiper(".mySwiper", {
     slidesPerView: 1,
     spaceBetween: 30, // Espacio entre cards por defecto
     loop: true,

@@ -1,67 +1,64 @@
-let pagina = 1;
-const btnAnterior = document.getElementById('btnAnterior');
-const btnSiguiente = document.getElementById('btnSiguiente');
+$(document).ready(function() {
+    let pagina = 1;
 
-// Agregar eventos a los botones de paginación
-btnSiguiente.addEventListener('click', () => {
-	if (pagina < 1000) {
-		pagina += 1;
-		cargarLibros();
-	}
-});
+    const $btnAnterior = $('#btnAnterior');
+    const $btnSiguiente = $('#btnSiguiente');
+    const $contenedor = $('#contenedor');
+    const $barsIcon = $('.navbar .fa-bars');
+    const $menuMobile = $('.menu-mobile');
 
-btnAnterior.addEventListener('click', () => {
-	if (pagina > 1) {
-		pagina -= 1;
-		cargarLibros();
-	}
-});
+    // Función para cargar los libros desde la API
+    const cargarLibros = async () => {
+        try {
+            const respuesta = await $.ajax({
+                url: `https://gutendex.com/books/?page=${pagina}`,
+                method: 'GET',
+                dataType: 'json'
+            });
 
-// Función para cargar los libros desde la API
-const cargarLibros = async () => {
-	try {
-		const respuesta = await fetch(`https://gutendex.com/books/?page=${pagina}`);
+            let libros = '';
+            respuesta.results.forEach(libro => {
+                const imgUrl = libro.formats["image/jpeg"] || libro.formats["text/html"];
+                const author = libro.authors[0]?.name || "Autor desconocido";
+                
+                libros += `
+                    <div class="libro">
+                        <a href="detalle-libro.html?id=${libro.id}">
+                            <img class="cover" src="${imgUrl}" alt="Portada del libro">
+                        </a>
+                        <h3 class="titulo">${libro.title}</h3>
+                        <p>${author}</p>
+                    </div>
+                `;
+            });
 
-		// Si la respuesta es correcta
-		if (respuesta.status === 200) {
-			const datos = await respuesta.json();
+            $contenedor.html(libros);
 
-			let libros = '';
-			datos.results.forEach(libro => {
-				const imgUrl = libro.formats["image/jpeg"] || libro.formats["text/html"];
-				const author = libro.authors[0]?.name || "Autor desconocido";
-				
-				libros += `
-					<div class="libro">
-						<a href="detalle-libro.html?id=${libro.id}">
-							<img class="cover" src="${imgUrl}" alt="Portada del libro">
-						</a>
-						<h3 class="titulo">${libro.title}</h3>
-						<p>${author}</p>
-					</div>
-				`;
-			});
+        } catch (error) {
+            console.log('Error:', error);
+        }
+    }
 
-			document.getElementById('contenedor').innerHTML = libros;
+    // Agregar eventos a los botones de paginación
+    $btnSiguiente.on('click', () => {
+        if (pagina < 1000) {
+            pagina += 1;
+            cargarLibros();
+        }
+    });
 
-		} else if (respuesta.status === 404) {
-			console.log('No se encontraron libros');
-		} else {
-			console.log('Hubo un error y no sabemos qué pasó');
-		}
+    $btnAnterior.on('click', () => {
+        if (pagina > 1) {
+            pagina -= 1;
+            cargarLibros();
+        }
+    });
 
-	} catch (error) {
-		console.log(error);
-	}
-}
+    // Cargar los libros al iniciar
+    cargarLibros();
 
-// Cargar los libros al iniciar
-cargarLibros();
-
-
-const barsIcon = document.querySelector('.navbar .fa-bars');
-const menuMobile = document.querySelector('.menu-mobile');
-
-barsIcon.addEventListener('click', () => {
-    menuMobile.classList.toggle('active');
+    // Manejo del menú móvil
+    $barsIcon.on('click', () => {
+        $menuMobile.toggleClass('active');
+    });
 });

@@ -211,6 +211,7 @@ html {
     background-color: #6d4c41; /* Efecto hover en el botón */
 }
 
+
 /* Hover effect on cards */
 .card:hover {
     transform: scale(1.03); /* Aumento sutil al pasar el mouse */
@@ -368,9 +369,11 @@ html {
 	padding: 1rem;
 }
 
-.btn-search i {
+.btn-search svg {
 	font-size: 2rem;
-	color: #fff;
+}
+.btn-search:hover{
+	background-color: chocolate;
 }
 
 
