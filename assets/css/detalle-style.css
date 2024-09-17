@@ -1,0 +1,289 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	background: linear-gradient(to right, #d5bfa9, #b89b87, #a38982, #8e787b);
+	color: #333;
+}
+
+html {
+	font-size: 62.5%;
+	font-family: 'Montserrat', sans-serif;
+}
+
+/* Variables */
+:root {
+	--primary-color: #c7a17a;
+	--background-color: #f9f5f0;
+	--dark-color: #151515;
+}
+
+/* Contenedores y tamaños */
+.container {
+	max-width: 120rem;
+	margin: 0 auto;
+	padding: 0 1rem;
+	width: 100%;
+}
+
+.heading-1 {
+	padding: 10px;
+	text-align: center;
+	font-weight: 500;
+	font-size: 3rem;
+}
+
+/* Navegación */
+.container-navbar {
+	background-color: var(--primary-color);
+}
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	position: relative;
+}
+
+.navbar .fa-bars {
+	display: none;
+}
+
+.menu {
+	display: flex;
+	gap: 2rem;
+}
+
+.menu li {
+	list-style: none;
+}
+
+.menu a {
+	text-decoration: none;
+	font-size: 1.3rem;
+	color: var(--dark-color);
+	font-weight: 600;
+	text-transform: uppercase;
+	position: relative;
+}
+
+.menu a::after {
+	content: '';
+	width: 1.5rem;
+	height: 1px;
+	background-color: #fff;
+	position: absolute;
+	bottom: -3px;
+	left: 50%;
+	transform: translate(-50%, 50%);
+	opacity: 0;
+	transition: all 0.3s ease;
+}
+
+.menu a:hover::after {
+	opacity: 1;
+}
+
+.menu a:hover {
+	color: #fff;
+}
+
+.search-form {
+	position: relative;
+	display: flex;
+	align-items: center;
+	border: 2px solid #fff;
+	border-radius: 2rem;
+	background-color: #fff;
+	height: 4.4rem;
+	overflow: hidden;
+}
+
+.search-form input {
+	outline: none;
+	font-family: inherit;
+	border: none;
+	width: 25rem;
+	font-size: 1.4rem;
+	padding: 0 2rem;
+	color: #777;
+}
+
+.search-form input::-webkit-search-cancel-button {
+	appearance: none;
+}
+
+.search-form .btn-search {
+	border: none;
+	background-color: var(--primary-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	padding: 1rem;
+}
+
+.btn-search i {
+	font-size: 2rem;
+	color: #fff;
+}
+
+/* Libro detalle */
+.libro-detalle {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contenedor-libro {
+	display: flex;
+	gap: 30px;
+	flex-direction: row;
+}
+
+.libro-cover {
+	width: 300px;
+	height: auto;
+	border-radius: 10px;
+}
+
+.libro-info {
+	flex: 1;
+}
+
+.libro-info h1 {
+	font-size: 32px;
+	margin-bottom: 15px;
+}
+
+.libro-info p {
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+.libro-info span {
+	color: #555;
+}
+
+.btn-leer {
+	margin-top: 20px;
+	padding: 10px 20px;
+	font-size: 16px;
+	background-color: #8b6f56;
+	color: white;
+	border: none;
+	border-radius: 35px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.btn-leer:hover {
+	background-color: #573710;
+}
+
+/* Media Queries */
+
+/* Mobile view */
+@media (max-width: 768px) {
+	html {
+		font-size: 55%;
+	}
+
+	.navbar {
+		padding: 1rem;
+	}
+
+	.navbar .fa-bars {
+		display: block;
+		color: #fff;
+		font-size: 3rem;
+		cursor: pointer;
+	}
+
+	.menu {
+		display: none;
+		flex-direction: column;
+		background-color: var(--primary-color);
+		width: 100%;
+	}
+
+	.menu.active {
+		display: flex;
+	}
+
+	.menu li {
+		text-align: center;
+		margin: 0;
+	}
+
+	.menu a {
+		padding: 1rem;
+	}
+
+	.search-form input {
+		width: calc(100% - 5rem);
+	}
+
+	.search-form .btn-search {
+		width: 5rem;
+	}
+}
+
+/* Tablet view */
+@media (max-width: 468px) {
+	html {
+		font-size: 42.5%;
+	}
+
+	.heading-1 {
+		font-size: 2.8rem;
+	}
+
+	.contenedor-libro {
+		flex-direction: column;
+	}
+
+	.libro-cover {
+		width: 100%;
+		max-width: 300px;
+	}
+
+	.libro-info h1 {
+		font-size: 24px;
+	}
+
+	.libro-info p {
+		font-size: 16px;
+	}
+
+	.card-category {
+		height: auto;
+	}
+
+	.card-category p {
+		font-size: 1.8rem;
+	}
+
+	.card-category span {
+		font-size: 1.2rem;
+	}
+
+	.menu-footer {
+		grid-template-columns: 1fr;
+	}
+
+	.copyright {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+}

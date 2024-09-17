@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/detalle-style.css" />
+    <title>Detalles del Libro</title>
+  </head>
+  <body>
+    <div class="container-navbar">
+      <nav class="navbar container">
+        <i class="fa-solid fa-bars"></i>
+        <ul class="menu">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="page1.html">Biblioteca</a></li>
+        </ul>
+  
+        <form class="search-form">
+          <input type="search" placeholder="Buscar..." />
+          <button class="btn-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </nav>
+    </div>
+    <br>
+    <section class="libro-detalle" id="libro-detalle">
+      <div class="contenedor-libro">
+        <img id="cover" src="" alt="Portada del libro" class="libro-cover" />
+        <div class="libro-info">
+          <h1 id="titulo">Título del libro</h1>
+          <p><strong>Autor:</strong> <span id="autor"></span></p>
+          <p><strong>Páginas:</strong> <span id="paginas"></span></p>
+          <p><strong>N° de descargas:</strong> <span id="popularidad"></span></p>
+          <p>
+            <strong>Idiomas Disponibles:</strong> <span id="idiomas"></span>
+          </p>
+          <p><strong>ID:</strong> <span id="id"></span></p>
+          <p><strong>Descripción:</strong> <span id="descripcion"></span></p>
+
+          <div>
+            <button class="btn-leer">Leer en línea</button>
+            <button class="btn-leer">Descargar ePub</button>
+            <button class="btn-leer">Descargar Mobi</button>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <script src="assets/js/detalle.js"></script>
+  </body>
+</html>

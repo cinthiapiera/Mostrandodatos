@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/page1.css">
+	<title>Sitio de Libros Populares</title>
+</head>
+<body>
+	<div class="container-navbar">
+		<nav class="navbar container">
+			<i class="fa-solid fa-bars"></i>
+			<ul class="menu">
+				<li><a href="index.html">Inicio</a></li>
+				<li><a href="page1.html">Biblioteca</a></li>
+			</ul>
+
+			<form class="search-form">
+				<input type="search" placeholder="Buscar..." />
+				<button class="btn-search">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
+			</form>
+		</nav>
+	</div>
+	<h1>Las obras más destacadas de la literatura clásica</h1>
+	<div class="contenedor" id="contenedor"></div>
+
+	<div class="paginacion">
+		<button id="btnAnterior">Anterior</button>
+		<button id="btnSiguiente">Siguiente</button>
+	</div>
+
+	<script src="assets/js/script.js"></script>
+</body>
+</html>
