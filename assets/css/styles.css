@@ -22,6 +22,20 @@ html {
 }
 
 
+#btnLimpiar {
+    border-radius: 10px;
+    height: 35px;
+    width: 60px;
+	color: #777;
+	border: 2px solid #fff;
+}
+
+#btnLimpiar:hover{
+	background-color:brown;
+	color: white;
+}
+
+
 
 
 .swiper-button-next:after, .swiper-button-prev:after {
@@ -34,10 +48,6 @@ html {
     line-height: 1;
 }
 
-.container {
-	max-width: 120rem;
-	margin: 0 auto;
-}
 
 .heading-1 {
     padding: 10px;
@@ -50,24 +60,10 @@ html {
 	background-color: var(--primary-color);
 }
 
-.navbar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1rem 0;
-}
-
-.navbar .fa-bars {
-	display: none;
-}
 
 .menu {
 	display: flex;
 	gap: 2rem;
-}
-
-.menu li {
-	list-style: none;
 }
 
 .menu a {
@@ -92,18 +88,124 @@ html {
 	transition: all 0.3s ease;
 }
 
-.menu a:hover::after {
-	opacity: 1;
+
+
+.menu-icon, #check{
+	display: none;
 }
 
-.menu a:hover {
-	color: #fff;
+.kfc {
+    height: 30px;
 }
-.menu_hamburguesa{
-    display: none;
+
+
+
+@media (max-width: 952px){
+	.search-form{
+		padding-left: 10px;
+		
+	}
+
+	a{
+		font-size: 10px;
+	}
 }
-.menu_hamburguesa:checked + .ul_links {
-    height: calc(100vh - var(--altura_header));
+
+@media (max-width: 858px){
+	.menu-icon{
+		display: block;
+	}
+	.menu{
+		position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #2c3e50;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+	}
+
+	.lin{
+		display: block;
+		margin: 50px 0;
+		line-height: 30px;
+	}
+
+	nav ul li{
+        display: block;
+        margin: 50px 0;
+        line-height: 30px;
+    }
+	
+
+	#check:checked ~ ul{
+		left:0;
+	}
+}
+
+@media (max-width: 600px) {
+    a {
+        font-size: 8px; /* Ajustar tamaño de fuente para pantallas más pequeñas */
+    }
+	.menu{
+		position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #2c3e50;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+	}
+	#check:checked ~ ul{
+		left:0;
+	}
+
+    .menu-icon {
+        padding: 10px; /* Espaciado adicional */
+    }
+
+    .lin {
+        margin: 30px 0; /* Espaciado menor */
+        line-height: 24px; /* Ajustar la línea */
+    }
+
+    nav ul li {
+        margin: 30px 0; /* Espaciado menor */
+    }
+}
+
+@media (max-width: 400px) {
+    a {
+        font-size: 7px; /* Tamaño de fuente más pequeño */
+    }
+
+	.menu{
+		position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #2c3e50;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+	}
+	#check:checked ~ ul{
+		left:0;
+	}
+    .menu {
+        top: 60px; /* Ajustar posición */
+    }
+
+    .lin {
+        margin: 20px 0; /* Espaciado aún menor */
+        line-height: 20px; /* Ajustar la línea */
+    }
+
+    nav ul li {
+        margin: 20px 0; /* Espaciado aún menor */
+    }
 }
 
 .list_icon {
@@ -243,6 +345,11 @@ html {
 
 
 
+
+
+
+
+
 /* ********************************** */
 /*             UTILIDADES             */
 /* ********************************** */
@@ -334,14 +441,15 @@ html {
 }
 
 .search-form {
-	position: relative;
-	display: flex;
-	align-items: center;
-	border: 2px solid #fff;
-	border-radius: 2rem;
-	background-color: #fff;
-	height: 4.4rem;
-	overflow: hidden;
+	width: 290px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    background-color: #fff;
+    height: 50px;
+    overflow: hidden;
 }
 
 .search-form input {
@@ -350,10 +458,11 @@ html {
 	border: none;
 	width: 25rem;
 	font-size: 1.4rem;
-	padding: 0 2rem;
 	color: #777;
 	cursor: pointer;
+	margin: 15px;
 }
+
 
 .search-form input::-webkit-search-cancel-button {
 	appearance: none;
@@ -366,14 +475,20 @@ html {
 	align-items: center;
 	justify-content: center;
 	height: 100%;
-	padding: 1rem;
+	padding: 10px;
+	width: 5rem;
 }
 
 .btn-search svg {
 	font-size: 2rem;
 }
 .btn-search:hover{
+	color: white;
 	background-color: chocolate;
+}
+
+.lupa::after{
+	color: white;
 }
 
 
@@ -768,3 +883,5 @@ html {
 		align-items: center;
 	}
 }
+
+
