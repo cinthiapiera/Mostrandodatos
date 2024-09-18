@@ -109,6 +109,12 @@ $(document).ready(function () {
         $("#search-input").val(''); // Limpia el campo de entrada
     });
 
+    $("#btnLimpiar").click(function (e){
+        e.preventDefault();
+        $("#book-container").empty();
+        $("#search-input").val("");
+    })
+
     function buscarBooks(books) {
         $.ajax({
             type: "GET",
