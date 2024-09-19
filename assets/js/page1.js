@@ -6,22 +6,32 @@ $(document).ready(function() {
     const $barsIcon = $('.navbar .fa-bars');
     const $menuMobile = $('.menu-mobile');
 
+    const $searchInput = $('#search-input');
+    const $btnBuscar = $('#buscar');
+    const $btnLimpiar = $('#btnLimpiar');
+
     // Función para cargar los libros desde la API
-    function cargarLibros() {
+    function cargarLibros(query = '') {
+        const url = query ? `https://gutendex.com/books?search=${query}&page=${pagina}` : `https://gutendex.com/books/?page=${pagina}`;
         $.ajax({
-            url: `https://gutendex.com/books/?page=${pagina}`,
+            url: url,
             method: 'GET',
             dataType: 'json',
             success: function(respuesta) {
-                mostrarLibros(respuesta.results);
+                if (respuesta.results.length > 0) {
+                    mostrarLibros(respuesta.results);
+                } else {
+                    $contenedor.html('<p>No se encontraron libros con ese título.</p>');
+                }
             },
             error: function(error) {
                 console.log('Error:', error);
+                $contenedor.html('<p>Ocurrió un error al cargar los libros. Inténtalo nuevamente más tarde.</p>');
             }
         });
     }
 
-    // Función para mostrar los libros en el contenedor
+    // Función para mostrar los libros en el contenedor // se cambio la url para direccionarlo a la pagina de detalle
     function mostrarLibros(libros) {
         let librosHtml = '';
         libros.forEach(libro => {
@@ -29,8 +39,8 @@ $(document).ready(function() {
             const author = libro.authors[0]?.name || "Autor desconocido";
             librosHtml += `
                 <div class="libro">
-                    <a href="detalle-libro.html?id=${libro.id}">
-                        <img class="cover" src="${imgUrl}" alt="Portada del libro">
+                    <a href="page2.html?id=${libro.id}">
+                        <img class="cover" src="${imgUrl}" alt="Portada de ${libro.title}">
                     </a>
                     <h3 class="titulo">${libro.title}</h3>
                     <p>${author}</p>
@@ -44,7 +54,8 @@ $(document).ready(function() {
     $btnSiguiente.on('click', function() {
         if (pagina < 1000) {
             pagina++;
-            cargarLibros();
+            const query = $searchInput.val();
+            cargarLibros(query);
         }
     });
 
@@ -52,7 +63,31 @@ $(document).ready(function() {
     $btnAnterior.on('click', function() {
         if (pagina > 1) {
             pagina--;
-            cargarLibros();
+            const query = $searchInput.val();
+            cargarLibros(query);
+        }
+    });
+
+    // Evento para el botón Buscar
+    $btnBuscar.on('click', function() {
+        const query = $searchInput.val();
+        pagina = 1; // Reinicia a la primera página en caso de nueva búsqueda
+        cargarLibros(query);
+    });
+
+    // Evento para el botón Limpiar
+    $btnLimpiar.on('click', function() {
+        $searchInput.val(''); // Limpiar el campo de búsqueda
+        pagina = 1; // Reinicia a la primera página
+        cargarLibros(); // Cargar todos los libros
+    });
+
+    // Búsqueda al presionar Enter
+    $searchInput.on('keypress', function(e) {
+        if (e.which === 13) { // Código de tecla Enter
+            const query = $searchInput.val();
+            pagina = 1; // Reinicia a la primera página
+            cargarLibros(query);
         }
     });
 
