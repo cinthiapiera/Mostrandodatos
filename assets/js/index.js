@@ -23,7 +23,6 @@ $(document).ready(function () {
 
     $("#btnLimpiar").click(function (e){
         e.preventDefault();
-        $("#book-container").empty();
         $("#search-input").val("");
     })
 
@@ -42,27 +41,39 @@ $(document).ready(function () {
     }
 
     function renderBooks(data) {
-        // Asegúrate de que data.results y data.results[0] existen y tienen las propiedades esperadas
+        // Comprobamos si hay resultados
         if (data.results && data.results.length > 0) {
-            let book = data.results[0]; // Solo usando el primer libro como ejemplo
-
-            let div = $("<div></div>");
-            div.addClass("divlibro");
-
-            let img = $("<img>");
-            // Asegúrate de que 'book.formats["image/jpeg"]' tenga un valor válido
-            img.attr("src", book.formats["image/jpeg"] || 'default-image.jpg'); // Usa una imagen predeterminada si no se encuentra la imagen
-            img.addClass("cardimg");
-            div.append(img);
-
-            let libro = $("<h3></h3>");
-            libro.addClass("nombre");
-            libro.append(book.title || 'Título no disponible'); // Proporciona un texto por defecto si el título no está disponible
-            div.append(libro);
-
-            $('#book-container').append(div);
+            // Limpiamos el contenedor antes de añadir nuevos libros
+            $('#contenedor').empty();
+            
+            // Iteramos sobre cada libro en los resultados
+            data.results.forEach(book => {
+                let div = $("<div></div>").addClass("libro"); // Creamos un nuevo div para cada libro
+    
+                // Creamos la imagen
+                let img = $("<img>")
+                    .attr("src", book.formats["image/jpeg"] || 'default-image.jpg') // Imagen por defecto si no hay
+                    .addClass("cover");
+                div.append(img);
+    
+                // Creamos el título
+                let libro = $("<h3></h3>")
+                    .addClass("titulo")
+                    .text(book.title || 'Título no disponible'); // Texto por defecto si no hay título
+                div.append(libro);
+    
+                // Creamos el autor
+                let author = $("<p></p>")
+                    .text(book.authors[0]?.name || "Autor desconocido"); // Texto por defecto si no hay autor
+                div.append(author);
+    
+                // Añadimos el div del libro al contenedor
+                $('#contenedor').append(div);
+            });
         } else {
-            alert("Libro no encontrado.");
+            alert("No se encontraron libros.");
         }
     }
 });
+
+//<div class="contenedor" id="contenedor"></div>
